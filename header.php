@@ -86,8 +86,8 @@
                                                 <li><a href="about.php">About</a></li>
                                                 <li><a href="cases.php">Cases</a>
                                                     <ul class="submenu">
-                                                        <li><a href="cases.php?q=abuse=">Kidnap</a></li>
-                                                        <li><a href="cases.php?q=kidnap=">Abuse</a></li>
+                                                        <li><a href="cases.php?q=kidnap">Kidnap</a></li>
+                                                        <li><a href="cases.php?q=abuse">Abuse</a></li>
                                                     </ul>
                                                 </li>
                                                 <!-- <li><a href="contact.html">Contact</a></li> -->

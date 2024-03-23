@@ -29,39 +29,29 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-6">
           <div class="single-cat text-center mb-50">
             <div class="cat-icon">
               <span class="flaticon-null-1"></span>
             </div>
             <div class="cat-cap">
-              <h5><a href="services.html">Clean Water</a></h5>
-              <p>The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.</p>
+              <h5><a href="services.html">Report Child Abuse</a></h5>
+              <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain.</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-6">
           <div class="single-cat active text-center mb-50">
             <div class="cat-icon">
               <span class="flaticon-think"></span>
             </div>
             <div class="cat-cap">
-              <h5><a href="services.html">Clean Water</a></h5>
-              <p>The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.</p>
+              <h5><a href="services.html">Report Child Kidnap</a></h5>
+              <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="single-cat text-center mb-50">
-            <div class="cat-icon">
-              <span class="flaticon-gear"></span>
-            </div>
-            <div class="cat-cap">
-              <h5><a href="services.html">Clean Water</a></h5>
-              <p>The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.</p>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

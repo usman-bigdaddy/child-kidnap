@@ -13,10 +13,10 @@
                                 <P data-animation="fadeInUp" data-delay=".8s">Onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut bore et dolore magnt, sed do eiusmod.</P>
 
                                 <div class="hero__btn">
-                                    <a href="industries.html" class="btn hero-btn mb-10" data-animation="fadeInLeft" data-delay=".8s">Donate</a>
-                                    <a href="industries.html" class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
+                                    <a href="report.php" class="btn hero-btn mb-10" data-animation="fadeInLeft" data-delay=".8s">Report</a>
+                                    <a href="#" class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
                                         <i class="flaticon-null"></i>
-                                        <p>+12 1325 41</p>
+                                        <p>0808279****</p>
                                     </a>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="single-slider slider-height d-flex align-items-center">
+            <!-- <div class="single-slider slider-height d-flex align-items-center">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -61,78 +61,38 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="home-blog-single mb-30">
-                        <div class="blog-img-cap">
-                            <div class="blog-img">
-                                <img src="assets/img/gallery/home-blog1.png" alt>
+                <?php
+                include 'connect.php';
+                $sql = "SELECT * FROM tb_cases limit 4"; // Change 'your_table_name' to your actual table name
+                $result = $conn->query($sql);
 
-                                <div class="blog-date text-center">
-                                    <span>24</span>
-                                    <p>Now</p>
-                                </div>
-                            </div>
-                            <div class="blog-cap">
-                                <p>Creative derector</p>
-                                <h3><a href="blog_details.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="home-blog-single mb-30">
-                        <div class="blog-img-cap">
-                            <div class="blog-img">
-                                <img src="assets/img/gallery/home-blog2.png" alt>
+                if ($result->num_rows > 0) {
+                    // Output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<div class="col-xl-6 col-lg-6 col-md-6">';
+                        echo '    <div class="home-blog-single mb-30">';
+                        echo '        <div class="blog-img-cap">';
+                        echo '            <div class="blog-img">';
+                        echo '                <img style=height:320px src="uploads/' . $row["cover_image"] . '" alt>';
+                        echo '                <div class="blog-date text-center">';
+                        echo '                    <span>' . date("d", strtotime($row["case_date"])) . '</span>'; // Assuming you have a 'date' column in your database
+                        echo '                    <p>' . date("M", strtotime($row["case_date"])) . '</p>';
+                        echo '                </div>';
+                        echo '            </div>';
+                        echo '            <div class="blog-cap">';
+                        echo '                <h3><a href="blog_details.html">' . $row["case_title"] . ' | ' . $row["category"] . ' Case </a></h3>'; // Assuming you have a 'title' column in your database
+                        echo '                <p>' . $row["case_description"] . '</p>'; // Assuming you have a 'type' column in your database
+                        echo '            </div>';
+                        echo '        </div>';
+                        echo '    </div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "0 results";
+                }
 
-                                <div class="blog-date text-center">
-                                    <span>24</span>
-                                    <p>Now</p>
-                                </div>
-                            </div>
-                            <div class="blog-cap">
-                                <p>Creative derector</p>
-                                <h3><a href="blog_details.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="home-blog-single mb-30">
-                        <div class="blog-img-cap">
-                            <div class="blog-img">
-                                <img src="assets/img/gallery/home-blog1.png" alt>
-
-                                <div class="blog-date text-center">
-                                    <span>24</span>
-                                    <p>Now</p>
-                                </div>
-                            </div>
-                            <div class="blog-cap">
-                                <p>Creative derector</p>
-                                <h3><a href="blog_details.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="home-blog-single mb-30">
-                        <div class="blog-img-cap">
-                            <div class="blog-img">
-                                <img src="assets/img/gallery/home-blog2.png" alt>
-
-                                <div class="blog-date text-center">
-                                    <span>24</span>
-                                    <p>Now</p>
-                                </div>
-                            </div>
-                            <div class="blog-cap">
-                                <p>Creative derector</p>
-                                <h3><a href="blog_details.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                $conn->close();
+                ?>
             </div>
             <div class="header-right-btn d-none d-lg-block ml-20 text-center">
                 <a href="contact.html" class="btn header-btn">View More</a>
