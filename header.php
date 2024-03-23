@@ -73,7 +73,7 @@
 
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="home.php"><img src="assets/img/logo/logo.png" alt></a>
+                                    <a href="home.php"><img src="assets/img/logo/download-1.png" alt></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10">

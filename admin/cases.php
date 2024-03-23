@@ -38,7 +38,7 @@
                             echo "<td>" . $row["case_description"] . "</td>";
                             echo "<td>" . $row["case_date"] . "</td>";
                             echo "<td><img src='../uploads/" . $row["cover_image"] . "' alt='Image' style='max-width: 100px;'></td>";
-                            echo "<td><button class='btn btn-danger'>Delete</button></td>";
+                            echo "<td><a href='delete.php?id=" . $row["case_id"] . "' class='btn btn-danger'>Delete</a></td>";
                             echo "</tr>";
                         }
                     } else {

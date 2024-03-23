@@ -95,7 +95,7 @@
                 ?>
             </div>
             <div class="header-right-btn d-none d-lg-block ml-20 text-center">
-                <a href="contact.html" class="btn header-btn">View More</a>
+                <a href="cases.php" class="btn header-btn">View More</a>
             </div>
         </div>
     </section>
