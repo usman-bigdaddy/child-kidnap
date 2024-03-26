@@ -4,6 +4,7 @@
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <?php
     include 'header.php';
@@ -23,6 +24,20 @@
     $sql_kidnap = "SELECT COUNT(*) AS kidnap_cases FROM tb_cases WHERE category = 'kidnap'";
     $result_kidnap = $conn->query($sql_kidnap);
     $kidnap_cases = ($result_kidnap->num_rows > 0) ? $result_kidnap->fetch_assoc()["kidnap_cases"] : 0;
+
+    // Fetch data from the database
+    $sql = "SELECT case_state, COUNT(*) AS state_count FROM tb_cases GROUP BY case_state";
+    $result = $conn->query($sql);
+
+    // Prepare data for plotting
+    $states = [];
+    $count = [];
+    while ($row = $result->fetch_assoc()) {
+        $states[] = $row['case_state'];
+        $count[] = $row['state_count'];
+    }
+
+    // Close the connection
     $conn->close();
     ?>
     <div class="container">
@@ -54,6 +69,34 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
     </div>
-
+    <script>
+        // JavaScript to plot the bar graph using Chart.js
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($states); ?>,
+                datasets: [{
+                    label: 'Case Count',
+                    data: <?php echo json_encode($count); ?>,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)', // Bar color
+                    borderColor: 'rgba(255, 99, 132, 1)', // Border color
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 </body>

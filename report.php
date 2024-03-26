@@ -22,6 +22,8 @@ include 'header.php' ?>
         $type = $_POST["type"];
         $title = $_POST["title"];
         $description = $_POST["desc"];
+        $state = $_POST["state"];
+        $addr = $_POST["addr"];
         $randomNumber = rand(1000, 9999);
         // Upload image
         $target_dir = "uploads/";
@@ -71,8 +73,9 @@ include 'header.php' ?>
                 $image_name = basename($_FILES["image"]["name"]);
 
                 // Prepare and execute SQL statement to insert data into database
-                $stmt = $conn->prepare("INSERT INTO tb_cases (case_id, category, case_title, case_description, cover_image) VALUES (?,?, ?, ?, ?)");
-                $stmt->bind_param("sssss", $randomNumber, $type, $title, $description, $image_name);
+                $stmt = $conn->prepare("INSERT INTO tb_cases (case_id, category, case_title, case_description, cover_image,
+                case_state, case_address) VALUES (?,?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssssss", $randomNumber, $type, $title, $description, $image_name, $state, $addr);
 
                 if ($stmt->execute()) {
                     $msg = "New record created successfully.";
@@ -108,14 +111,64 @@ include 'header.php' ?>
                                     </select>
                                 </div>
                             </div><br /><br /><br />
-                            <div class="col-sm-12">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <select name="state" class="form-control w-100" required name="state" id="state">
+                                        <option value="">--- Choose Case State ---</option>
+                                        <option value="Abia">Abia</option>
+                                        <option value="Adamawa">Adamawa</option>
+                                        <option value="Akwa Ibom">Akwa Ibom</option>
+                                        <option value="Anambra">Anambra</option>
+                                        <option value="Bauchi">Bauchi</option>
+                                        <option value="Bayelsa">Bayelsa</option>
+                                        <option value="Benue">Benue</option>
+                                        <option value="Borno">Borno</option>
+                                        <option value="Cross River">Cross River</option>
+                                        <option value="Delta">Delta</option>
+                                        <option value="Ebonyi">Ebonyi</option>
+                                        <option value="Edo">Edo</option>
+                                        <option value="Ekiti">Ekiti</option>
+                                        <option value="Enugu">Enugu</option>
+                                        <option value="Gombe">Gombe</option>
+                                        <option value="Imo">Imo</option>
+                                        <option value="Jigawa">Jigawa</option>
+                                        <option value="Kaduna">Kaduna</option>
+                                        <option value="Kano">Kano</option>
+                                        <option value="Katsina">Katsina</option>
+                                        <option value="Kebbi">Kebbi</option>
+                                        <option value="Kogi">Kogi</option>
+                                        <option value="Kwara">Kwara</option>
+                                        <option value="Lagos">Lagos</option>
+                                        <option value="Nasarawa">Nasarawa</option>
+                                        <option value="Niger">Niger</option>
+                                        <option value="Ogun">Ogun</option>
+                                        <option value="Ondo">Ondo</option>
+                                        <option value="Osun">Osun</option>
+                                        <option value="Oyo">Oyo</option>
+                                        <option value="Plateau">Plateau</option>
+                                        <option value="Rivers">Rivers</option>
+                                        <option value="Sokoto">Sokoto</option>
+                                        <option value="Taraba">Taraba</option>
+                                        <option value="Yobe">Yobe</option>
+                                        <option value="Zamfara">Zamfara</option>
+                                        <option value="FCT">FCT</option>
+                                    </select>
+                                </div>
+                            </div><br /><br /><br />
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <input class="form-control valid" name="title" id="title" type="text" required onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Case Title'" placeholder="Enter Case Title">
                                 </div>
-                            </div><br /><br />
+                            </div>
+                            <br /><br />
                             <div class="col-12 mt-9">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" name="desc" id="desc" cols="30" required rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Case Description'" placeholder=" Enter Case Description"></textarea>
+                                    <input class="form-control w-100" name="addr" id="addr" cols="20" required rows="2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Case Full Address'" placeholder=" Enter Case Full Address" />
+                                </div>
+                            </div>
+                            <div class="col-12 mt-9">
+                                <div class="form-group">
+                                    <textarea class="form-control w-100" name="desc" id="desc" cols="20" required rows="2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Case Description'" placeholder=" Enter Case Description"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-12">

@@ -75,13 +75,13 @@
                         echo '            <div class="blog-img">';
                         echo '                <img style=height:320px src="uploads/' . $row["cover_image"] . '" alt>';
                         echo '                <div class="blog-date text-center">';
-                        echo '                    <span>' . date("d", strtotime($row["case_date"])) . '</span>'; // Assuming you have a 'date' column in your database
+                        echo '                    <span>' . date("d", strtotime($row["case_date"])) . '</span>';
                         echo '                    <p>' . date("M", strtotime($row["case_date"])) . '</p>';
                         echo '                </div>';
                         echo '            </div>';
                         echo '            <div class="blog-cap">';
-                        echo '                <h3><a href="blog_details.html">' . $row["case_title"] . ' | ' . $row["category"] . ' Case </a></h3>'; // Assuming you have a 'title' column in your database
-                        echo '                <p>' . $row["case_description"] . '</p>'; // Assuming you have a 'type' column in your database
+                        echo '                <h3><a href="blog_details.html">' . $row["case_title"] . ' | ' . $row["category"] . ' Case </a></h3>';
+                        echo '                <p>' . $row["case_description"] . '</p>';
                         echo '            </div>';
                         echo '        </div>';
                         echo '    </div>';

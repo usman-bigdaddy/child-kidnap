@@ -23,6 +23,8 @@
                         <th>Category</th>
                         <th>Title</th>
                         <th>Description</th>
+                        <th>State</th>
+                        <th>Address</th>
                         <th>Date</th>
                         <th>Image</th>
                         <th>Action</th>
@@ -36,6 +38,8 @@
                             echo "<td>" . $row["category"] . "</td>";
                             echo "<td>" . $row["case_title"] . "</td>";
                             echo "<td>" . $row["case_description"] . "</td>";
+                            echo "<td>" . $row["case_state"] . "</td>";
+                            echo "<td>" . $row["case_address"] . "</td>";
                             echo "<td>" . $row["case_date"] . "</td>";
                             echo "<td><img src='../uploads/" . $row["cover_image"] . "' alt='Image' style='max-width: 100px;'></td>";
                             echo "<td><a href='delete.php?id=" . $row["case_id"] . "' class='btn btn-danger'>Delete</a></td>";
