@@ -1,5 +1,4 @@
 <?php
-// Check if election ID is provided
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
     include '../connect.php';
     $case_id = $_GET["id"];
@@ -17,7 +16,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         }
 
         // Delete the case record from the database
-        $sql_delete_case = "DELETE FROM tb_cases WHERE case_id = $case_id"; // Replace 'your_table_name' with the actual name of your table
+        $sql_delete_case = "DELETE FROM tb_cases WHERE case_id = $case_id";
         if ($conn->query($sql_delete_case) === TRUE) {
             echo "Case deleted successfully";
         } else {

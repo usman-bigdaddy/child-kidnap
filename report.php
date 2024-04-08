@@ -24,6 +24,7 @@ include 'header.php' ?>
         $description = $_POST["desc"];
         $state = $_POST["state"];
         $addr = $_POST["addr"];
+        $status = 'Pending';
         $randomNumber = rand(1000, 9999);
         // Upload image
         $target_dir = "uploads/";
@@ -74,8 +75,8 @@ include 'header.php' ?>
 
                 // Prepare and execute SQL statement to insert data into database
                 $stmt = $conn->prepare("INSERT INTO tb_cases (case_id, category, case_title, case_description, cover_image,
-                case_state, case_address) VALUES (?,?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("sssssss", $randomNumber, $type, $title, $description, $image_name, $state, $addr);
+                case_state, case_address, case_status) VALUES (?,?, ?, ?, ?, ?, ?, ? )");
+                $stmt->bind_param("ssssssss", $randomNumber, $type, $title, $description, $image_name, $state, $addr, $status);
 
                 if ($stmt->execute()) {
                     $msg = "New record created successfully.";
