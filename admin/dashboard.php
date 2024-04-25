@@ -37,6 +37,20 @@
         $count[] = $row['state_count'];
     }
 
+    $sql_map = "SELECT case_state, COUNT(*) AS count FROM tb_cases GROUP BY case_state";
+    $result = $conn->query($sql_map);
+
+    // Initialize $data array
+    $data = [];
+
+    // Fetch data and store in $data array
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data[$row['case_state']] = $row['count'];
+        }
+    } else {
+        echo "No data found.";
+    }
     // Close the connection
     $conn->close();
     ?>
@@ -72,6 +86,9 @@
         <div class="row">
             <canvas id="myChart" width="400" height="200"></canvas>
         </div>
+        <div class="row">
+            <div id="chartdiv"></div>
+        </div>
     </div>
     <script>
         // JavaScript to plot the bar graph using Chart.js
@@ -99,4 +116,6 @@
             }
         });
     </script>
+
+
 </body>
