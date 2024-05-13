@@ -22,22 +22,14 @@ include 'header.php';
         include 'connect.php';
         $name = $_POST["name"];
         $description = $_POST["desc"];
-        $nameorphanage = $_POST["nameorphanage"];
-        $sql = "SELECT id FROM orphanage WHERE nameorphanage = '$nameorphanage'";
-        // $result = $conn->query($sql);
-        // if ($result->num_rows > 0) {
-        //     $row = $result->fetch_assoc();
-        //     $id = $row['id'];
-        //     $stmt = $conn->prepare("INSERT INTO tb_orphanage_incident (id, child_name, child_description) VALUES (?,?,?)");
-        //     $stmt->bind_param("sss", $id, $name, $description);
-        //     if ($stmt->execute()) {
-        //         $msg = "New record created successfully.";
-        //     } else {
-        //         $msg =  "Error: " . $stmt->error;
-        //     }
-        // } else {
-        //     $msg =  "No matching records found";
-        // }
+        $id_of_orphanage = $_POST["id_of_orphanage"];
+        $stmt = $conn->prepare("INSERT INTO tb_orphanage_incident (id, child_name, child_description) VALUES (?,?,?)");
+        $stmt->bind_param("sss", $id_of_orphanage, $name, $description);
+        if ($stmt->execute()) {
+            $msg = "New record created successfully.";
+        } else {
+            $msg =  "Error: " . $stmt->error;
+        }
         // $stmt->close();
         // $conn->close();
     }
@@ -53,10 +45,27 @@ include 'header.php';
                         <div class="row">
                             <div class="col-12 mt-9">
                                 <div class="form-group">
-                                    <input class="form-control w-100" name="nameorphanage" id="nameorphanage" required placeholder=" Enter Name of Orphanage" />
+                                    <?php
+                                    include 'connect.php';
+                                    $sql = "SELECT id, name_ FROM orphanage";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        echo "<select class=form-control w-100 name='id_of_orphanage'>";
+                                        echo "<option  value=''>Select Orphanage</option>";
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<option  value='" . $row['id'] . "'>" . $row['name_'] . "</option>";
+                                        }
+                                        echo "</select>";
+                                    } else {
+                                        echo "No orphanages found";
+                                    }
+
+                                    // Close database connection
+                                    $conn->close();
+                                    ?>
                                 </div>
-                            </div>
-                            <div class="col-12 mt-9">
+                            </div><br /><br />
+                            <div style="margin-top: 25px;" class="col-12 mt-9">
                                 <div class="form-group">
                                     <input class="form-control w-100" name="name" id="name" required placeholder=" Enter Name of Child" />
                                 </div>

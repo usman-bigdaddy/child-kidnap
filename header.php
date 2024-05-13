@@ -84,6 +84,7 @@
                                             <ul id="navigation">
                                                 <li><a href="home.php">Home</a></li>
                                                 <li><a href="about.php">About</a></li>
+                                                <li><a href="orphanage_cases.php">Orphanage Cases</a></li>
                                                 <li><a href="cases.php">Cases</a>
                                                     <ul class="submenu">
                                                         <li><a href="cases.php?q=kidnap">Kidnap</a></li>
@@ -100,13 +101,15 @@
                                             </ul>
                                         </nav>
                                     </div>
-                                    <!-- 
+
                                     <div class="header-right-btn d-none d-lg-block ml-20">
                                         <a href="report.php" class="btn header-btn">Report</a>
-                                    </div> -->
-                                    <div class="header-right-btn d-none d-lg-block ml-20">
-                                        <a href="login_orphanage.php" class="btn header-btn">Orphanage Login</a>
                                     </div>
+                                    <!-- <div class="header-right-btn d-none d-lg-block ml-20">
+                                        <a href="login_orphanage.php" class="btn header-btn">Orphanage Login</a>
+                                    </div> -->
+
+
                                 </div>
                             </div>
 

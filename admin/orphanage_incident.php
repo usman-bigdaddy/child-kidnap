@@ -9,6 +9,11 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
         <!-- Include DataTables JavaScript -->
         <script type="text/javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                new DataTable('#example');
+            });
+        </script>
     </head>
     <?php
     include 'header.php';
@@ -18,7 +23,7 @@
     ?>
     <div class="container">
         <div class="row">
-            <h3>List of Orphanages</h3>
+            <h3>List of Orphanages Complaint</h3>
             <table id="example" class="table table-hover table-striped display">
                 <thead>
                     <tr>
