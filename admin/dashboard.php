@@ -25,6 +25,12 @@
     $result_kidnap = $conn->query($sql_kidnap);
     $kidnap_cases = ($result_kidnap->num_rows > 0) ? $result_kidnap->fetch_assoc()["kidnap_cases"] : 0;
 
+
+    $sql_kidnap = "SELECT COUNT(*) AS registered_orphanages FROM orphanage";
+    $result = $conn->query($sql_kidnap);
+    $registered_orphanages = ($result->num_rows > 0) ? $result->fetch_assoc()["registered_orphanages"] : 0;
+
+
     // Fetch data from the database
     $sql = "SELECT case_state, COUNT(*) AS state_count FROM tb_cases GROUP BY case_state";
     $result = $conn->query($sql);
@@ -56,7 +62,7 @@
     ?>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">All Cases</h5>
@@ -65,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Abuse Cases</h5>
@@ -74,11 +80,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Kidnap Cases</h5>
                         <p class="card-text"><?php echo $kidnap_cases; ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Registered Orphanages</h5>
+                        <p class="card-text"><?php echo $registered_orphanages; ?></p>
                     </div>
                 </div>
             </div>

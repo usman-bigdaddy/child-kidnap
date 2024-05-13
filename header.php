@@ -90,13 +90,22 @@
                                                         <li><a href="cases.php?q=abuse">Abuse</a></li>
                                                     </ul>
                                                 </li>
+                                                <li><a href="cases.php">Report</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="report.php">Normal</a></li>
+                                                        <li><a href="report_orphanage.php">Orphanage</a></li>
+                                                    </ul>
+                                                </li>
                                                 <!-- <li><a href="contact.html">Contact</a></li> -->
                                             </ul>
                                         </nav>
                                     </div>
-
+                                    <!-- 
                                     <div class="header-right-btn d-none d-lg-block ml-20">
                                         <a href="report.php" class="btn header-btn">Report</a>
+                                    </div> -->
+                                    <div class="header-right-btn d-none d-lg-block ml-20">
+                                        <a href="login_orphanage.php" class="btn header-btn">Orphanage Login</a>
                                     </div>
                                 </div>
                             </div>
