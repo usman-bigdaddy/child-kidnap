@@ -100,7 +100,7 @@
                 datasets: [{
                     label: 'Case Count',
                     data: <?php echo json_encode($count); ?>,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)', // Bar color
+                    backgroundColor: '	#00A86B', // Bar color
                     borderColor: 'rgba(255, 99, 132, 1)', // Border color
                     borderWidth: 1
                 }]
