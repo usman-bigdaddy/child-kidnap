@@ -17,10 +17,13 @@ include 'header.php' ?>
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             if ($_POST["password"] === $row["password"]) {
-                echo "hello email";
                 $_SESSION['orphanage_email'] = $email;
+                $_SESSION['orphanage_name'] = $row["name_"];
+                $_SESSION['orphanage_id'] = $row["id"];
                 $url = "home.php"; // URL of the next page
                 echo "<script>window.location.href = '$url';</script>";
+                //header("Location: home.php");
+                //exit;
             } else {
                 $msg_login = "Invalid password";
             }

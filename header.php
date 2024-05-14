@@ -1,7 +1,14 @@
-<!doctype html>
+<?php
+session_start();
+?>
 <html class="no-js" lang="zxx">
 
-<!-- Mirrored from preview.colorlib.com/theme/charityworks/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 14:26:10 GMT -->
+<?php
+$orphanage_email = "";
+if (isset($_SESSION["orphanage_email"]) && !empty($_SESSION["orphanage_email"])) {
+    $orphanage_email = $_SESSION["orphanage_email"];
+}
+?>
 
 <head>
     <meta charset="utf-8">
@@ -102,10 +109,24 @@
                                         </nav>
                                     </div>
 
-                                    <div class="header-right-btn d-none d-lg-block ml-20">
-                                        <a href="report.php" class="btn header-btn">Report</a>
-                                    </div>
                                     <!-- <div class="header-right-btn d-none d-lg-block ml-20">
+                                        <a href="report.php" class="btn header-btn">Report</a>
+                                    </div> -->
+                                    <?php
+
+                                    if (isset($_SESSION["orphanage_email"]) && !empty($_SESSION["orphanage_email"])) {
+                                        // User is logged in
+                                        echo '<div class="header-right-btn d-none d-lg-block ml-20">';
+                                        echo '<a href="logout.php" class="btn header-btn">Logout</a>';
+                                        echo '</div>';
+                                    } else {
+                                        // User is not logged in
+                                        echo '<div class="header-right-btn d-none d-lg-block ml-20">';
+                                        echo '<a href="login_orphanage.php" class="btn header-btn">Login as Orphanage</a>';
+                                        echo '</div>';
+                                    }
+                                    ?>
+                                    <!-- <div class="header-right-btn d-none d-lg-block ml-20" <?php if (!(isset($_SESSION["orphanage_email"]))) echo 'style="display:none;"'; ?>>
                                         <a href="login_orphanage.php" class="btn header-btn">Orphanage Login</a>
                                     </div> -->
 

@@ -18,13 +18,19 @@ include 'header.php';
         </div>
     </div> -->
     <?php
+    $orphanage_email = "";
+    if (isset($_SESSION["orphanage_email"]) && !empty($_SESSION["orphanage_email"])) {
+        $orphanage_email = $_SESSION["orphanage_email"];
+    } else {
+        $url = "login_orphanage.php"; // URL of the next page
+        echo "<script>window.location.href = '$url';</script>";
+    }
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_btn"])) {
         include 'connect.php';
         $name = $_POST["name"];
         $description = $_POST["desc"];
-        $id_of_orphanage = $_POST["id_of_orphanage"];
         $stmt = $conn->prepare("INSERT INTO tb_orphanage_incident (id, child_name, child_description) VALUES (?,?,?)");
-        $stmt->bind_param("sss", $id_of_orphanage, $name, $description);
+        $stmt->bind_param("sss", $_SESSION["orphanage_id"], $name, $description);
         if ($stmt->execute()) {
             $msg = "New record created successfully.";
         } else {
@@ -38,33 +44,13 @@ include 'header.php';
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1 style="font-size: 50px;" class="contact-title">Orphanage Report an Incident</h1>
+                    <h6 style="font-size: 50px;" class="contact-title">Welcome <?php echo $_SESSION["orphanage_name"] ?> orphanage</h6>
+                    <h5>Report an Incident</h5>
                 </div>
                 <div class="col-lg-12">
                     <form class="form-contact contact_form" action="report_orphanage.php" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-12 mt-9">
-                                <div class="form-group">
-                                    <?php
-                                    include 'connect.php';
-                                    $sql = "SELECT id, name_ FROM orphanage";
-                                    $result = $conn->query($sql);
-                                    if ($result->num_rows > 0) {
-                                        echo "<select class=form-control w-100 name='id_of_orphanage'>";
-                                        echo "<option  value=''>Select Orphanage</option>";
-                                        while ($row = $result->fetch_assoc()) {
-                                            echo "<option  value='" . $row['id'] . "'>" . $row['name_'] . "</option>";
-                                        }
-                                        echo "</select>";
-                                    } else {
-                                        echo "No orphanages found";
-                                    }
 
-                                    // Close database connection
-                                    $conn->close();
-                                    ?>
-                                </div>
-                            </div><br /><br />
                             <div style="margin-top: 25px;" class="col-12 mt-9">
                                 <div class="form-group">
                                     <input class="form-control w-100" name="name" id="name" required placeholder=" Enter Name of Child" />
@@ -77,9 +63,16 @@ include 'header.php';
                             </div>
                         </div>
                         <?php echo $msg; ?>
-                        <div class="form-group mt-3">
+                        <?php if (isset($_SESSION["orphanage_email"])) : ?>
+                            <!-- Show the form if the session is set (user is logged in) -->
+                            <div class="form-group mt-3">
+                                <button type="submit" name="add_btn" class="button button-contactForm boxed-btn">Report</button>
+                            </div>
+                        <?php endif; ?>
+
+                        <!-- <div class="form-group mt-3">
                             <button type="submit" name="add_btn" class="button button-contactForm boxed-btn">Report</button>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
             </div>
